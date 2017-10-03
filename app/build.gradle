@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        keyConfig {
+            keyAlias 'tinkoff-android-key'
+            keyPassword '111222'
+            storeFile file('/Users/warns/myprojects/tinkoff-android-project/keystores/tinkoff.jks')
+            storePassword '111222'
+        }
+    }
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
@@ -10,28 +18,32 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.keyConfig
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.keyConfig
         }
         debug {
             applicationIdSuffix ".debug"
+            signingConfig signingConfigs.keyConfig
         }
         prodDebug {
             applicationIdSuffix ".prodDebug"
+            signingConfig signingConfigs.keyConfig
         }
     }
     productFlavors {
         red {
-
+            signingConfig signingConfigs.keyConfig
         }
         green {
-
+            signingConfig signingConfigs.keyConfig
         }
         blue {
-
+            signingConfig signingConfigs.keyConfig
         }
     }
 }
